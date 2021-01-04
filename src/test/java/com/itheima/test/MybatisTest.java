@@ -1,6 +1,7 @@
 package com.itheima.test;
 
 import com.itheima.dao.IUserDao;
+import com.itheima.domain.QueryVo;
 import com.itheima.domain.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -90,10 +91,10 @@ public class MybatisTest {
     @Test
     public void testSave(){
         User user = new User();
-        user.setUsername("modify last insertid");
-        user.setAddress("北京市顺义区");
-        user.setSex("男");
-        user.setBirthday(new Date());
+        user.setUserName("modify user property");
+        user.setUserAddress("北京市顺义区");
+        user.setUserSex("男");
+        user.setUserBirthday(new Date());
         System.out.println("保存操作之前："+user);
         //5.执行保存方法
         userDao.saveUser(user);
@@ -107,11 +108,11 @@ public class MybatisTest {
     @Test
     public void testUpdate(){
         User user = new User();
-        user.setId(49);
-        user.setUsername("mybastis update user");
-        user.setAddress("北京市顺义区");
-        user.setSex("女");
-        user.setBirthday(new Date());
+        user.setUserId(49);
+        user.setUserName("mybastis update user");
+        user.setUserAddress("北京市顺义区");
+        user.setUserSex("女");
+        user.setUserBirthday(new Date());
 
         //5.执行保存方法
         userDao.updateUser(user);
@@ -146,6 +147,35 @@ public class MybatisTest {
         List<User> users = userDao.findByUserName("王");
         for (User user : users) {
             System.out.println(user);
+        }
+    }
+
+
+    /**
+     * 测试查询总记录数
+     */
+    @Test
+    public void testFindTotal(){
+        //5.执行删除方法
+        int total = userDao.findTotal();
+        System.out.println(total);
+    }
+
+
+    /**
+     * 测试使用queryvo作为查询条件
+     */
+    @Test
+    public void testFindUsersByVo(){
+        QueryVo vo = new QueryVo();
+        User user = new User();
+        user.setUserName("%王%");
+        vo.setUser(user);
+        //5.执行删除方法
+//        List<User> users = userDao.findByUserName("%王%");
+        List<User> users = userDao.findByUserName("王");
+        for (User u : users) {
+            System.out.println(u);
         }
     }
 
