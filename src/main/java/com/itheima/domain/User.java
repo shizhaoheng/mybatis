@@ -2,62 +2,79 @@ package com.itheima.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
-public class User implements Serializable{
-    private Integer userId;
-    private String userName;
-    private Date userBirthday;
-    private String userSex;
-    private String userAddress;
+/**
+ * @author 黑马程序员
+ * @Company http://www.ithiema.com
+ */
+public class User implements Serializable {
 
-    public Integer getUserId() {
-        return userId;
+    private Integer id;
+    private String username;
+    private String address;
+    private String sex;
+    private Date birthday;
+
+    //一对多关系映射：主表实体应该包含从表实体的集合引用
+    private List<Account> accounts;
+
+    public List<Account> getAccounts() {
+        return accounts;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
     }
 
-    public String getUserName() {
-        return userName;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public Date getUserBirthday() {
-        return userBirthday;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserBirthday(Date userBirthday) {
-        this.userBirthday = userBirthday;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getUserSex() {
-        return userSex;
+    public String getAddress() {
+        return address;
     }
 
-    public void setUserSex(String userSex) {
-        this.userSex = userSex;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getUserAddress() {
-        return userAddress;
+    public String getSex() {
+        return sex;
     }
 
-    public void setUserAddress(String userAddress) {
-        this.userAddress = userAddress;
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "userId=" + userId +
-                ", userName='" + userName + '\'' +
-                ", userBirthday=" + userBirthday +
-                ", userSex='" + userSex + '\'' +
-                ", userAddress='" + userAddress + '\'' +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", address='" + address + '\'' +
+                ", sex='" + sex + '\'' +
+                ", birthday=" + birthday +
                 '}';
     }
 }
